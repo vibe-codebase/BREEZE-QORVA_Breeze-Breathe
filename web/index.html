@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="icon" href="data:," />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
+    <script>
+      /* Tablets and foldables: lay the app out at a phone-like width and let Android scale it up natively, so buttons
+         and text grow with the screen. Phones are unchanged. Uses the screen size, so it never loops on resize. */
+      (function () {
+        var m = document.querySelector('meta[name=viewport]'), base = m.getAttribute('content');
+        function fit() {
+          var w = screen.width, h = screen.height, s = Math.max(1, Math.min(1.6, w / 430, h / 820));
+          var c = s > 1.02 ? 'width=' + Math.round(w / s) + ',user-scalable=no,viewport-fit=cover' : base;
+          if (m.getAttribute('content') !== c) m.setAttribute('content', c);
+        }
+        fit(); window.addEventListener('resize', fit);
+      })();
+    </script>
+    <meta name="theme-color" content="#0f1a24" />
+    <title>%APP_NAME%</title>
+  </head>
+  <body><div id="root"></div><script type="module" src="./src/main.tsx"></script></body>
+</html>
